@@ -1,0 +1,128 @@
+@import url(https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400);
+
+@keyframes line-anim {
+    75% {
+        width: 130px;
+        transform: rotate(0);
+    }
+    100% {
+        width: 600px;
+        transform: rotate(0);
+    }
+}
+@keyframes btn-focus-anim {
+    0% {
+        box-shadow: 0 0 0 85px #673AB7;
+    }
+    100% {
+        box-shadow: 0 0 0 100px #4A148C;
+    }
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 10vw;/* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;/* Support for all WebKit browsers. */
+  vertical-align: sub;
+  -webkit-font-smoothing: antialiased;/* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;/* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;/* Support for IE. */
+  font-feature-settings: 'liga';
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+html, body {
+    background: #4A148C;
+    text-decoration: none;
+    overflow: hidden;
+}
+form {
+    position: absolute;
+    width: 700px;
+    height: 96px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#sbx {
+    position: relative;
+    top: -18px;
+    width: 546px;
+    border: none;
+    background: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+}
+#sbx:focus ~ #btn {
+    color: white;
+    text-indent: 6px;
+    transition: .2s .4s;
+}
+#sbx:focus ~ #line {
+    animation: line-anim .5s both;
+}
+#sbx:focus::-webkit-input-placeholder {
+    text-indent: 100%;
+}
+#sbx:focus::-moz-placeholder {
+    text-align: right;
+}
+#btn {
+    width: 96px;
+    height: 96px;
+    background: #4A148C;
+    color: transparent;
+    font-size: 48px;
+    text-indent: -100%;
+    vertical-align: middle;
+    border: 6px solid white;
+    border-radius: 50%;
+}
+#btn:focus {
+    text-indent: 6px;
+    color: white;
+    animation: btn-focus-anim .2s both;
+}
+#line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 102px;
+    margin: auto;
+    width: 130px;
+    height: 0;
+    background: white;
+    border: 3px solid white;
+    border-radius: 3px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: rotate(-135deg);
+    transform-origin: right;
+    z-index: -1;
+}
+::-webkit-input-placeholder {
+    color: white;
+    opacity: .6;
+    transition: .2s;
+}
+::-moz-placeholder {
+    color: white;
+    opacity: .6;
+    transition: .2s;
+}

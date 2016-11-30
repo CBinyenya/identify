@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Search Box and Button Animated</title>
+  
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}"/>
+
+  
+</head>
+
+<body>
+  <form>
+  <input type="search" id="sbx" name="searchbox" placeholder="focus here to animate..."/>
+  <input type="submit" id="btn" class="material-icons" value="send" name="button"/>
+  <span id="line"></span>
+</form>  
+    
+    <script type=text/javascript src="{{
+  url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+</html>
