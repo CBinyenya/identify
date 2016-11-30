@@ -1,14 +1,17 @@
+import os
 import datetime
-
-
-from flask import request, render_template
+from flask import Flask, request, render_template
 from flask.ext.pymongo import PyMongo
 
-
-from identify import app
 from at import Messenger
 from phonenumber import PhoneNumber
 
+
+# Create our application
+app = Flask(__name__)
+
+# Specify the static folder
+app.static_folder = os.path.abspath("static")
 
 # Specify mongidb database
 app.config['MONGODB_DBNAME'] = 'identify'
@@ -47,7 +50,7 @@ def handle_request():
 		pass
 	elif request.method == 'GET':
 		now = datetime.datetime.now()
-		return render_template('index.html', id=3, date=now)
+		return render_template('form.html', id=3, date=now)
 
 
 	text = request.form['text']
@@ -116,6 +119,7 @@ def humanize(phone):
 	elif phone[0] == '0':
 		return phone
 
+
 def handle_search_command(number, sender, command):
 	number = str(number).upper()	
 	response = mongo.db.found.find_one({'number': number, 'status': False})
@@ -140,8 +144,7 @@ def handle_search_command(number, sender, command):
 			phone = sender
 			if command in SWAHILI:
 				message = dictionary['ngojea'] % number
-			else:
-				print 'Number is', type(number)				
+			else:				
 				message = dictionary['waiting'] % number
 	else:		
 		mongo.db.found.update_one({'number': number, 'sender': sender}, {'$set': {'status': True}},  upsert=True)		
@@ -188,6 +191,7 @@ def handle_found_command(number, sender, command):
 		else:
 			message = dictionary['lost'] % (number, humanize(sender))
 	return phone, message
+
 
 def send_message(phone, message):
 	phn = PhoneNumber(phone)
